@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/images/logoBgBlack.png">
+    <script src="https:kit.fontawesome.com/6bda94a8de.js" crossorigin="anonymous"></script>
+    <title>Meus Trabalhos</title>
+
+    <!--_-_-_-_-_STYLE/-_-_-_-_-_-_--->
+    <style>
+        @charset "UTF-8";
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 1s;
+
+            h2 {
+                font-size: 30px;
+                margin: 3rem 0;
+            }
+        }
+
+        .dark {
+            background-color: #171717;
+            color: #ffffff;
+        }
+
+        /*------------HEADER------------*/
+        header {
+            transition: 1s;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 0.1rem 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            animation: headerAnimation linear;
+            animation-timeline: scroll();
+
+            .logos {
+                .logoBgBlack {
+                    opacity: 0;
+                    position: absolute;
+                    z-index: -1;
+
+                    transition: .5s;
+
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.1);
+                        filter: drop-shadow(-2px 1px 5px #ffffffbd);
+                    }
+                }
+
+                .logoBgWhite {
+                    transition: .5s;
+
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.1);
+
+                    }
+                }
+            }
+
+            /*------------menu nav------------*/
+            nav {
+                /* width: 400px;
+                height: 30px;
+                display: flex;
+                justify-content: space-between; */
+
+                .menu-list {
+                    /* background-color: #244c2b; */
+                    display: flex;
+                    gap: 2rem;
+
+                    a {
+                        color: black;
+                        text-decoration: none;
+                        font-size: 23px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .line {
+                            width: 0%;
+                            height: 2px;
+                            background-color: #000000;
+                            transition: .5s;
+                        }
+
+                        &:hover {
+                            .line {
+                                width: 100%;
+                            }
+                        }
+
+                    }
+
+                    li {
+                        list-style: none;
+                    }
+                }
+
+            }
+
+            #menu-btn {
+                display: none;
+            }
+
+            /*------------menu nav------------*/
+
+            .dark-btn {
+                input[type="checkbox"] {
+                    display: none;
+                }
+
+                font-size: 35px;
+
+                #moon {
+                    transition: 0.5s;
+                    position: absolute;
+                    z-index: 2;
+
+                    &:hover {
+                        color: #c7c7c7;
+                        cursor: pointer;
+                        transform: scale(1.1);
+                    }
+
+                    &:active {
+                        transform: scale(1) rotateZ(360deg);
+                    }
+
+                }
+
+                #sun {
+                    transition: 0.5s;
+                    opacity: 0;
+
+                    &:hover {
+                        color: #ffffff;
+                        text-shadow: 1px 1px 20px #ffffffb3,
+                            -2px 2px 40px #ffffffb3;
+                        cursor: pointer;
+                        transform: scale(1.1);
+                    }
+
+                    &:active {
+                        transform: scale(1) rotateZ(360deg);
+                    }
+                }
+            }
+        }
+
+        .dark header {
+            color: #ffffff;
+            animation: darkHeaderAnimation linear;
+            animation-timeline: scroll();
+
+
+            .logos {
+                .logoBgBlack {
+                    opacity: 1;
+                    z-index: 2;
+                }
+
+                .logoBgWhite {
+                    opacity: 0;
+                }
+            }
+
+            nav {
+                a {
+                    color: white;
+
+
+                    .line {
+                        width: 0%;
+                        height: 2px;
+                        background-color: #ffffff;
+                        box-shadow: 1px 1px 20px #ffffff,
+                            -2px 2px 40px #ffffffb3;
+                        transition: .5s;
+                    }
+
+                    &:hover {
+                        text-shadow: 1px 1px 20px #ffffff,
+                            -2px 2px 40px #ffffffb3;
+
+                        .line {
+                            width: 100%;
+                        }
+                    }
+
+                }
+            }
+
+            .dark-btn {
+                #moon {
+                    display: none;
+                }
+
+                #sun {
+                    opacity: 1;
+                }
+            }
+        }
+
+        /*header para dispositivos moveis*/
+        @media all and (max-width: 880px) {
+            header {
+
+                nav .menu-list {
+                    /* background-color: #244c2b; */
+                    padding: 0px;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 3px;
+
+
+
+
+
+                    li {
+                        list-style: none;
+                        margin: 0;
+                        width: 80%;
+
+
+                        border-bottom: #a6a6a6 solid 2px;
+                        border-top: none;
+                        background-color: #ffffff;
+                        padding: 2rem;
+
+                        &:nth-child(4) {
+                            border-bottom: none;
+                        }
+
+                        &:hover {
+                            background-color: #a6a6a6;
+                        }
+                    }
+                }
+
+                #menu {
+                    display: none;
+                    position: absolute;
+                    z-index: 100;
+                    top: 70px;
+                    left: 0;
+                    background-color: #ffffff;
+                    width: 100%;
+                    height: 100vh;
+                }
+
+                #menu-btn {
+                    display: contents;
+                    font-size: 27px;
+                    order: 1;
+                }
+
+                .logos {
+                    order: 2;
+                }
+
+                .dark-btn {
+                    order: 3;
+                }
+            }
+
+            .dark header {
+                .menu-list {
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: left;
+                    flex-direction: column;
+                    gap: 0rem;
+
+                    a {
+                        /* color: black;
+                text-decoration: none;
+                font-size: 23px; */
+
+                        &:hover {
+                            border-bottom: none;
+                        }
+
+                    }
+
+                    li {
+                        list-style: none;
+                        margin: 0;
+
+                        background-color: #141414;
+                        padding: 2rem;
+
+                        &:hover {
+                            background-color: #040000;
+                        }
+                    }
+                }
+
+                #menu {
+                    display: none;
+                    position: absolute;
+                    z-index: 100;
+                    background-color: #141414;
+                    width: 100%;
+                    height: 100vh;
+                }
+
+                #menu-btn {
+                    color: #ffffff;
+                    display: contents;
+                    font-size: 27px;
+                    order: 1;
+                }
+            }
+        }
+
+        /*------------/HEADER------------*/
+
+        /*--------------BOARD--------------*/
+        .board {
+            display: grid;
+            grid-template-columns: 300px 300px 300px;
+            gap: 3rem;
+            margin-bottom: 3rem;
+
+            .card {
+                width: 300px;
+                height: 250px;
+                background-color: #ffffff;
+                box-shadow: -2px 8px 30px #24242448;
+                border-radius: 20px;
+                display: grid;
+                justify-content: center;
+                padding: 10px;
+                overflow: hidden;
+                transition: 1.5s;
+
+
+                &:hover {
+                    .preview {
+                        height: 185px;
+                        margin-bottom: 0;
+
+                        h3 {
+                            transform: translateY(-127px);
+                            background: linear-gradient(to bottom, #ffffff00, #ffffff);
+                            padding: 12px;
+                        }
+
+                        img {
+                            transform: scale(1.1);
+                        }
+                    }
+
+                }
+
+                .preview {
+                    background-color: #757575;
+                    border-radius: 20px;
+                    width: 300px;
+                    height: 250px;
+                    margin-bottom: 30px;
+                    transition: 1s ease;
+                    overflow: hidden;
+
+                    img {
+                        transition: 2s;
+                    }
+
+
+                    h3 {
+                        font-size: 30px;
+                        width: 300px;
+                        transition: 1s;
+
+                    }
+
+
+                }
+
+                .btns {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+
+                    margin-top: 15px;
+
+
+
+                    .btn1 {
+
+                        background-color: #181818;
+                        color: #fff;
+                        border-radius: 10px;
+                        width: auto;
+                        height: 40px;
+                        padding: 10px;
+
+                        &:hover {
+                            color: #a1a1a1;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .btn2 {
+                        border: solid 1px #000000;
+                        background-color: #ffffff;
+                        border-radius: 10px;
+                        width: auto;
+                        height: 40px;
+                        padding: 10px;
+
+                        &:hover {
+                            background-color: #181818;
+                            color: #fff;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        button {
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+
+            &:hover {
+                background-color: #181818;
+                color: white;
+                cursor: pointer;
+            }
+
+            &:active {
+                span {
+                    margin-left: 3px;
+                }
+            }
+        }
+
+        .dark .board {
+            background-color: #00000000;
+            color: #ffffff;
+
+            .card {
+                background-color: #000;
+                box-shadow: -5px 5px 40px #34df001f,
+                    5px -5px 50px #0ea20939;
+
+                &:hover {
+                    .preview {
+                        height: 185px;
+                        margin-bottom: 0;
+
+                        h3 {
+                            transform: translateY(-127px);
+                            background: linear-gradient(to bottom, #00000000, #000000);
+                            padding: 12px;
+                        }
+
+                        img {
+                            transform: scale(1.1);
+                        }
+                    }
+
+                }
+
+
+                .btns .btn1 {
+                    border: solid 1px #000000;
+                    background-color: #2e2e2e;
+                    color: #fff;
+                    border-radius: 10px;
+                    width: auto;
+                    height: 40px;
+                    padding: 10px;
+
+                    &:hover {
+                        color: #a1a1a1;
+                        cursor: pointer;
+                    }
+                }
+
+                .btns .btn2 {
+                    border: solid 1px #ffffff;
+                    background-color: #000000;
+                    color: #fff;
+                    border-radius: 10px;
+                    width: auto;
+                    height: 40px;
+                    padding: 10px;
+
+                    &:hover {
+                        background-color: #ffffff;
+                        color: #000000;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            button {
+                padding: 15px;
+                border-radius: 15px;
+                border: none;
+                background-color: #181818;
+                color: white;
+
+                &:hover {
+                    color: #a8a8a8;
+                    cursor: pointer;
+                }
+
+                &:active {
+                    span {
+                        margin-left: 7px;
+                    }
+                }
+            }
+        }
+
+        @media all and (max-width: 880px) {
+            main .board {
+                display: flex;
+                justify-content: center;
+
+                flex-direction: column;
+
+                gap: 2rem;
+
+                .card {
+                    height: 290px;
+
+                    &:hover {
+                        img {
+                            transform: scale(0.9);
+                        }
+                    }
+
+                    .preview {
+                        height: 185px;
+                        margin-bottom: 0;
+
+                        h3 {
+                            transform: translateY(-127px);
+                            background: linear-gradient(to bottom, #ffffff00, #ffffff);
+                            padding: 12px;
+                        }
+
+
+                    }
+                }
+
+            }
+
+            .dark main .board {
+                .preview h3 {
+                    background: linear-gradient(to bottom, #ffffff00, #000000);
+                }
+            }
+        }
+
+        /*--------------/BOARD--------------*/
+
+
+        /*header*/
+        @keyframes headerAnimation {
+            to {
+                background-color: #ffffffd9;
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        @keyframes darkHeaderAnimation {
+            to {
+                background-color: #1c1c1cc2;
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        /*--------------FOOTER--------------*/
+        footer {
+            border: none;
+
+            background-color: #000;
+            color: aliceblue;
+
+            width: 100%;
+
+            /* margin-right: -5%; */
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 3rem;
+
+            p {
+                margin-top: 30px;
+                color: #a6a6a6;
+            }
+
+            h2 {
+                margin-bottom: 2rem;
+            }
+
+            h3 {
+                padding: 2rem 0rem 1rem 0rem;
+            }
+
+            hr {
+                width: 90%;
+                margin-bottom: 30px;
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-around;
+
+                /*--------------links--------------*/
+                a {
+                    text-decoration: none;
+                    color: aliceblue;
+
+                    &:hover {
+                        color: #a6a6a6;
+                    }
+                }
+
+                /*--------------/links--------------*/
+
+                /*--------------LINKS_RAPIDOS--------------*/
+                .linksRapidos {
+                    margin-right: 50px;
+
+                    nav {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                    }
+                }
+
+                /*--------------/LINKS_RAPIDOS--------------*/
+
+                /*--------------CONTATO--------------*/
+                .contato nav {
+                    display: flex;
+                    flex-direction: column;
+
+                    gap: 1rem;
+                }
+
+                /*--------------/CONTATO--------------*/
+
+                /*--------------REDES_SOCIAIS--------------*/
+                .redesSociais {
+                    margin-left: 50px;
+
+                    .icons2 {
+                        padding-top: 1rem;
+                        text-align: right;
+                        font-size: 2rem;
+
+                    }
+                }
+
+                /*--------------/REDES_SOCIAIS--------------*/
+            }
+
+            .logoFooter {
+                margin-top: 3rem;
+                width: 10%;
+            }
+        }
+
+        /*footer para dispositivos moveis*/
+        @media all and (max-width: 880px) {
+            footer {
+                border: none;
+
+                background-color: #000;
+                color: aliceblue;
+
+                width: 100%;
+
+                /* margin-right: -5%; */
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 3rem;
+
+                text-align: center;
+
+                p {
+                    text-align: center;
+                    margin-top: 2rem;
+                    color: #a6a6a6;
+                    width: 80%;
+                }
+
+                h2 {
+                    margin-bottom: 2rem;
+                }
+
+                h3 {
+                    text-align: center;
+                    font-size: 15px;
+                    padding: 2rem 0;
+                    width: 80%;
+                }
+
+                hr {
+                    width: 90%;
+                    margin-bottom: 30px;
+                }
+
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3rem;
+                    justify-content: center;
+
+                    nav {
+                        align-items: center;
+
+                        span {
+                            text-align: center;
+                        }
+                    }
+
+                    /*--------------links--------------*/
+                    a {
+                        text-decoration: none;
+                        color: aliceblue;
+
+                        &:hover {
+                            color: #a6a6a6;
+                        }
+                    }
+
+                    /*--------------/links--------------*/
+
+                    /*--------------LINKS_RAPIDOS--------------*/
+                    .linksRapidos {
+                        margin-right: 0px;
+
+                        nav {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1rem;
+                        }
+                    }
+
+                    /*--------------/LINKS_RAPIDOS--------------*/
+
+                    /*--------------CONTATO--------------*/
+                    .contato nav {
+                        display: flex;
+                        flex-direction: column;
+
+                        gap: 1rem;
+                    }
+
+                    /*--------------/CONTATO--------------*/
+
+                    /*--------------REDES_SOCIAIS--------------*/
+                    .redesSociais {
+                        margin-left: 0px;
+
+                        .icons2 {
+                            padding-top: 1rem;
+                            text-align: center;
+                            font-size: 2rem;
+
+                        }
+                    }
+
+                    /*--------------/REDES_SOCIAIS--------------*/
+                }
+
+                .logoFooter {
+                    margin-top: 3rem;
+                    width: 10%;
+                }
+            }
+        }
+
+        /*--------------/FOOTER--------------*/
+    </style>
+    <!--_-_-_-_-_STYLE/-_-_-_-_-_-_--->
+</head>
+
+<body>
+    <!--_-_-_-_-_HEADER-_-_-_-_-_-_--->
+    <header id="home">
+        <!--logo-->
+        <div class="logos">
+            <a href="/index.html"><img class="logoBgBlack" width="70px" src="/images/logoBgBlack.png" alt="">
+                <img class="logoBgWhite" width="70px" src="/images/logo.png" alt=""></a>
+        </div>
+
+        <!--menu nav-->
+        <nav id="menu">
+            <ul class="menu-list">
+                <li><a href="#home">Home
+                        <div class="line"></div>
+                    </a></li>
+                <li><a href="#sobre">Sobre
+                        <div class="line"></div>
+                    </a></li>
+                <li><a href="#portifolio">Portifólio
+                        <div class="line"></div>
+                    </a></li>
+                <li><a href="#contato">Contato
+                        <div class="line"></div>
+                    </a></li>
+            </ul>
+
+            <script>
+
+                var menuButton = document.getElementById("menu-btn");
+                var menu = document.getElementById("menu");
+
+                menu.style.transition("2s");
+
+                function showmenu() {
+                    if (menu.style.display === "none") {
+                        menu.style.display = "block";
+                    } else {
+                        menu.style.display = "none";
+                    }
+                };
+
+            </script>
+        </nav>
+
+        <!--dark mode-->
+        <div class="dark-btn">
+            <input type="checkbox" name="change-theme" id="change-theme">
+            <label for="change-theme">
+                <i id="moon" class="fa-regular fa-moon"></i>
+                <i id="sun" class="fa-regular fa-sun"></i>
+            </label>
+
+            <script>
+                const chengeThemeBtn = document.querySelector("#change-theme");
+
+                function toggleDarkMode() {
+                    document.body.classList.toggle("dark");
+                };
+
+                chengeThemeBtn.addEventListener("change", function () {
+                    toggleDarkMode("dark");
+
+                    localStorage.removeItem("dark");
+
+                    if (document.body.classList.contains("dark")) {
+                        localStorage.setItem("dark", 1);
+                    }
+                });
+            </script>
+        </div>
+
+        <!--botao menu hamburger-->
+        <button onclick="showmenu()" id="menu-btn"><i class="fa-solid fa-bars fa-shake"></i></button>
+
+    </header>
+    <!--_-_-_-_-_HEADER/-_-_-_-_-_-_--->
+
+
+
+    <!--_-_-_-_-_PROJETOS-_-_-_-_-_-_--->
+    <main>
+
+        <h2>Projetos</h2>
+
+        <div class="board">
+
+            <div class="card">
+                <div class="preview">
+                    <img src="/images/previews-projects/Magento.gif" alt="">
+
+                    <h3>Magento</h3>
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/Magento-apresenta-o-/"><button class="btn1">ver
+                            site</button></a>
+                    <a href="https://github.com/denner17/Magento-apresenta-o-"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <div class="preview">
+                    <img src="images/previews-projects/designSs.gif" alt="">
+
+                    <h3>DesignSs</h3>
+
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/DssMrktDesign/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/DssMrktDesign"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="preview">
+                    <img src="/images/previews-projects/designSs.gif" alt="">
+
+                    <h3>DesignSs</h3>
+
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/DssMrktDesign/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/DssMrktDesign"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--_-_-_-_-_PROJETOS/-_-_-_-_-_-_--->
+
+    <footer>
+        <p>Se você pensa que pode ou pensa que não pode, em ambos está certo.</p>
+
+        <h3>&copy;2024 Denner Simão dos Santos WebDev</h3>
+
+        <hr>
+
+        <div class="container">
+            <div class="linksRapidos">
+                <h2>Links Rápidos</h2>
+                <nav>
+                    <a href="/index.html">Home</a>
+                </nav>
+            </div>
+
+            <div id="contato" class="contato">
+                <h2>Contato</h2>
+                <nav>
+                    <span>E-mail: <br> <a href="">dennersimao2@gmail.com</a></span>
+                    <span>Telefone: <br> (51) +51 992714177</span>
+                </nav>
+            </div>
+
+            <div class="redesSociais">
+                <h2>Siga-me nas redes sociais</h2>
+                <div class="icons2">
+                    <a href="https:www.instagram.com/denner_04/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https:www.linkedin.com/in/denner-dos-santos-258b37222/"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https:github.com/denner17"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <img class="logoFooter" src="images/logoBgBlack.png" alt="">
+
+    </footer>
+</body>
+
+</html>

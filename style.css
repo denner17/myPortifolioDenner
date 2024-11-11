@@ -765,9 +765,9 @@ main {
             align-items: center;
             gap: 2rem;
 
-            i:nth-child(4) {
+            /* i:nth-child(4) {
                 display: none;
-            }
+            } */
 
             i {
                 font-size: 120px;
@@ -776,7 +776,9 @@ main {
                 &:hover {
                     transform: scale(0.7);
                 }
+                
             }
+
         }
     }
 }

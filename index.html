@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="images/logoBgBlack.png">
-    <script src="https:kit.fontawesome.com/6bda94a8de.js" crossorigin="anonymous"></script>
+    <script src="https:kit.fontawesome.com/6bda94a8de.js"></script>
     <title>Denner dos Santos</title>
 </head>
 
@@ -51,7 +51,7 @@
         <span></span>
     </div>
 
-    <header id="home">
+    <header>
         <!--logo-->
         <div class="logos">
             <img class="logoBgBlack" width="70px" src="images/logoBgBlack.png" alt="">
@@ -125,7 +125,8 @@
 
     </header>
 
-    <main>
+    <!-- Main content (Intro + Prifile Photo)-->
+    <main id="home">
         <div class="intro">
             <h1>Denner Simão dos Santos</h1>
             <p>Gosta muito de tecnologia, tem formação em desenvolvimento web full-stack. Além disso, sua jornada não se
@@ -147,6 +148,7 @@
         </div>
     </main>
 
+    <!-- Sobre Mim (Carrossel)-->
     <section id="sobre" class="sobre">
         <h2>Sobre mim</h2>
 
@@ -160,27 +162,25 @@
                     <img src="images/carrossel/ios.png" alt="">
                     
                 </div>
-                <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis fuga optio magnam repellendus numquam nesciunt magni voluptate harum assumenda tempore odit, iste enim, consectetur itaque aliquid ea, vitae reprehenderit non.</p>
+                <p class="text">Sou formado em desenvolvimento web pelo Instituto da Oportunidade Social (IOS), e sou extremamente grato à turma e aos professores que marcaram minha trajetória na tecnologia. Eles foram essenciais para minha formação e paixão pela área</p>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 4</div>
-                <div class="secimg"><img src="images/carrossel/friends.png" alt=""></div>
-                <div class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat nesciunt reiciendis
-                    voluptatum harum iure magnam adipisci consectetur, ut ducimus, dolore, deserunt molestias hic vero!
-                    Culpa inventore cum maxime et dicta!</div>
+                <div class="secimg"><img src="images/carrossel/me.png" alt=""></div>
+                <div class="text">Atleta de alto rendimento no atletismo, represento a SOGIPA, o maior clube de atletismo de Porto Alegre, que considero minha segunda casa e tem sido uma fonte de apoio e crescimento  não somente na carreira esportiva, mas acadêmica e profissional também</div>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 4</div>
-                <div class="secimg"><img src="images/carrossel/familia.png" alt=""></div>
-                <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, ad officiis? Perspiciatis repudiandae fugiat laborum et similique, molestiae ut praesentium harum illum neque earum, unde quas temporibus nam! Cupiditate, sint.</div>
+                <div class="secimg"><img src="images/familly.jpg" alt=""></div>
+                <div class="text">Sou muito pela família que tenho. Minha mãe e meu pai sempre garantiram que eu tivesse tudo de que precisava e são as pessoas mais importantes da minha vida. Minhas conquistas são o reflexo do apoio e dedicação deles.</div>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">4 / 4</div>
-                <div class="secimg"><img src="images/carrossel/me.png" alt=""></div>
-                <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim tempore ducimus, officia, hic pariatur magnam, perspiciatis voluptates libero architecto minima unde adipisci. Quas dolorum reprehenderit dignissimos excepturi, natus maxime et?</div>
+                <div class="secimg"><img src="images/carrossel/friends.png" alt=""></div>
+                <div class="text">Meus amigos são uma extensão da minha família e os considero como verdadeiros irmãos.</div>
             </div>
 
             <!-- Next and previous buttons -->
@@ -229,6 +229,7 @@
         </script>
 
     </section>
+    <!-- Scrip from carrosel -->
     <script>
         fetch('https://api.unsplash.com/photos/random/?count=5&client_id=52d8369eb3e2576a5f5b6423865e074e9c7045761bff1ac5664ff3e0bdb57a1d')
             .then(response => response.json())
@@ -243,31 +244,9 @@
                 });
             });
     </script>
-    <!-- <script>
-        const carouselContainer = document.querySelector('.carousel-container');
-        const slides = document.querySelectorAll('.content');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            carouselContainer.style.transform = `translateX(-${currentIndex * 80}%)`;
-        }
-
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 10) % slides.length;
-            updateCarousel();
-        });
-
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 10 + slides.length) % slides.length;
-            updateCarousel();
-        });
-
-    </script> -->
-
-    <div class="competencias">
+    
+    <!-- Content of Icons for Hard Skills -->
+    <div id="skills" class="competencias">
         <h2>Hard Skills</h2>
 
         <div class="ferramentas">
@@ -276,30 +255,31 @@
             <i class="fa-brands fa-js"></i>
             <i class="fa-brands fa-php"></i>
             <i class="fa-brands fa-python"></i>
+            <i class="fa-brands fa-git-alt"></i>
         </div>
     </div>
 
-
+    <!-- Content of cards for things I like-->
     <div class="coisas_que_gosto">
         <h2>Coisas Que Gosto</h2>
 
         <section>
             <div>
-                <img width="140px" src="https:freepnglogo.com/images/all_img/1691829482canva-logo-black.png" alt="">
+                <img width="140px" src="images/coisasQgosto/canva-logo.png" alt="">
 
                 <hr>
 
                 <p>Fazer designs criativos com o aplicativo Canva</p>
             </div>
             <div>
-                <img width="135px" src="https:cdn-icons-png.flaticon.com/512/484/484582.png" alt="">
+                <img width="135px" src="images/coisasQgosto/translate-logo.png" alt="">
 
                 <hr>
 
                 <p>Estudar novos idiomas e culturas de outros países</p>
             </div>
             <div>
-                <img width="135px" src="https:cdn-icons-png.flaticon.com/512/4441/4441433.png" alt="">
+                <img width="135px" src="images/coisasQgosto/projeto-social-logo.png" alt="">
 
                 <hr>
 
@@ -308,6 +288,7 @@
         </section>
     </div>
 
+    <!-- Words List-->
     <div class="softSkills">
         <h2>Soft Skills</h2>
         <ul>
@@ -319,6 +300,7 @@
         </ul>
     </div>
 
+    <!-- My projects + Link to external page -->
     <section id="portifolio" class="projetos">
         <h2>Projetos</h2>
 
@@ -365,9 +347,11 @@
             </div>
         </div>
 
-        <button>ver mais <span> &#8594;</span></button>
+        <a href="projectsPage/projects.html"><button>ver mais <span> &#8594;</span></button></a>
     </section>
 
+
+    <!-- FOOTER -->
     <footer>
         <p>Se você pensa que pode ou pensa que não pode, em ambos está certo.</p>
 
@@ -382,7 +366,7 @@
                     <a href="#home">Home</a>
                     <a href="#sobre">Sobre mim</a>
                     <a href="#skills">Skills</a>
-                    <a href="#portifolio">Projetos</a>
+                    <a href="projectsPage/projects.html">Projetos</a>
                 </nav>
             </div>
 
