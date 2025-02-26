@@ -5,8 +5,14 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     font-family: sans-serif;
+    transition: 2s ease;
 }
 
 .dark body {
@@ -20,6 +26,7 @@ header {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    height: 100px;
     padding: 0.1rem 0;
     position: -webkit-sticky;
     position: sticky;
@@ -109,13 +116,13 @@ header {
 
         font-size: 35px;
 
-        #moon {
+        .icon-darkmode {
             transition: 0.5s;
+            width: 40px;
             position: absolute;
-            z-index: 2;
+            z-index: 20;
 
             &:hover {
-                color: #c7c7c7;
                 cursor: pointer;
                 transform: scale(1.1);
             }
@@ -126,14 +133,13 @@ header {
 
         }
 
-        #sun {
+        .icon-lightmode {
             transition: 0.5s;
             opacity: 0;
+            width: 45px;
 
             &:hover {
-                color: #ffffff;
-                text-shadow: 1px 1px 20px #ffffffb3,
-                    -2px 2px 40px #ffffffb3;
+                filter: drop-shadow(1px 1px 5px #ffffff);
                 cursor: pointer;
                 transform: scale(1.1);
             }
@@ -189,11 +195,11 @@ header {
     }
 
     .dark-btn {
-        #moon {
+        .icon-darkmode {
             display: none;
         }
 
-        #sun {
+        .icon-lightmode {
             opacity: 1;
         }
     }
@@ -232,7 +238,7 @@ header {
             display: none;
             position: absolute;
             z-index: 100;
-            top: 70px;
+            top: 100px;
             left: 0;
             background-color: #ffffff;
             width: 100%;
@@ -243,6 +249,30 @@ header {
             display: contents;
             font-size: 27px;
             order: 1;
+
+            &:hover {
+                cursor: pointer;
+
+                p {
+                    background-color: #a6a6a65d;
+                    color: black;
+
+                }
+            }
+
+            p {
+                transition: .5s;
+                font-weight: bold;
+                font-size: 15px;
+                background-color: black;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+            }
         }
 
         .logos {
@@ -299,10 +329,9 @@ header {
         }
 
         #menu-btn {
-            color: #ffffff;
-            display: contents;
-            font-size: 27px;
-            order: 1;
+            p {
+                border: solid 1px #ffffff;
+            }
         }
     }
 }
@@ -316,6 +345,8 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    padding-bottom: 8rem;
+
 
     .intro {
         margin-top: 3rem;
@@ -339,21 +370,38 @@ main {
         }
 
         .icons {
-            font-size: 35px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: left;
+            align-items: center;
+            gap: 1rem;
 
-            i {
-                color: #000000;
-                transition: ease;
+            img {
+                width: 90px;
+                transition: 1s ease;
 
                 &:hover {
-                    transform: scale(1.1);
+                    transform: scale(1.05);
                     color: #a6a6a6;
                 }
+
+            }
+
+            .linkedin {
+                border: solid white 5px;
+                border-radius: 10px;
+            }
+
+            .github {
+                border: solid black 5px;
+                border-radius: 10px;
             }
         }
     }
 
     .elements {
+        animation: motionMain linear;
+        animation-timeline: scroll();
 
         .spin {
             position: absolute;
@@ -380,8 +428,19 @@ main {
             img {
                 width: 400px;
                 transform: translate(-13%, -30%);
+
             }
         }
+    }
+}
+
+@keyframes colorChange {
+    from {
+        box-shadow: 8px 8px 30px #68ff8e;
+    }
+
+    to {
+        box-shadow: 8px 8px 30px green;
     }
 }
 
@@ -403,8 +462,14 @@ main {
         }
     }
 
-    .elements .spin {
-        opacity: 30%;
+    .elements {
+        .spin {
+            opacity: 30%;
+        }
+
+        .perfil {
+            animation: colorChange alternate infinite 5s linear;
+        }
     }
 }
 
@@ -492,197 +557,134 @@ main {
 
 /*------------SOBRE-MIM------------*/
 .sobre {
-    margin-top: 2rem;
-    background-color: #000000;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background-color: #00470d;
+    background-image: url(https://gradient.page/_next/image?url=%2Fcdn%2Fgreen-glory%2Fgreen-glory-003.jpg&w=1920&q=75);
     width: 100%;
-    padding-bottom: 3rem;
-    
-    
+    height: 400px;
 
-    /*-----titulo-----*/
-    h2 {
-        text-align: center;
-        color: white;
-        font-size: 30px;
-        padding: 30px;
-    }
 
-    /* Slideshow container */
-    .slideshow-container {
-        width: 80%;
-        display: grid;
-        justify-content: center;
-        position: relative;
-        margin: auto;
+    .stacked-carousel-container {
+        width: 700px;
+        height: 500px;
+        margin: 0 auto;
+        position: absolute;
+        transform: translate(-500px, -40px);
         overflow: hidden;
-    }
+        z-index: 1;
 
-    /* Hide the images by default */
-    .mySlides {
-        display: none;
-    }
-
-    /* Next & previous buttons */
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-        text-shadow: 2px 2px 20px black;
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover,
-    .next:hover {
-        background-color: #000000cc;
-    }
-
-    .mySlides{
-        background-color: rgba(245, 222, 179, 0);
-        width: 100%;
-        height: auto;
-        display: flex;
-
-        .secimg {
-            background-color: #00470d00;
+        .stacked-carousel {
             width: 100%;
-            height: 300px;
-            /* display: flex; */
-            /* justify-content: center; */
-            overflow: hidden;
+            height: 100%;
+            position: relative;
 
-            img{
-                width: 500px;
-                border-radius: 20px;
+            .stacked-item {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(20deg);
+                transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+                width: 350px;
+                height: 350px;
+                object-fit: cover;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                border-radius: 8px;
+                opacity: 0;
+
+                .stacked-item:nth-child(1) {
+                    z-index: 5;
+                    opacity: 1;
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+
+                .stacked-item:nth-child(2) {
+                    z-index: 4;
+                    opacity: 0.8;
+                    transform: translate(-60%, -50%) rotate(-10deg);
+                }
+
+                .stacked-item:nth-child(3) {
+                    z-index: 3;
+                    opacity: 0.6;
+                    transform: translate(-70%, -50%) rotate(-20deg);
+                }
+
+                .stacked-item:nth-child(n+4) {
+                    z-index: 2;
+                    opacity: 0.4;
+                    transform: translate(-80%, -50%) rotate(-30deg);
+                }
             }
-
         }
     }
 
-    /* .mySlides:nth-child(2) {
-        .secimg {
-            width: 100%;
-            height: 300px;
-            background-image: url(/carrossel/img/me.jpg);
-            background-size: cover;
-            background-color: #e84d4d;
-        }
+    .background-gradient {
+        position: absolute;
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(to top, black, #ffffff00);
     }
 
-    .mySlides:nth-child(3) {
-        .secimg {
-            width: 100%;
-            height: 300px;
-            background-color: #45dec7;
-        }
-    }
-
-    .mySlides:nth-child(4) {
-        .secimg {
-            width: 100%;
-            height: 300px;
-            background-color: #b9fff5;
-        }
-    } */
-
-    /* Caption text */
     .text {
-        color: #f2f2f2;
-        font-size: 15px;
-        padding: 8px;
-        
+        color: #fff;
+        width: 450px;
+        height: auto;
+        transform: translate(-130px);
         position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        bottom: 0%;
-        width: 80%;
-        text-align: center;
+        z-index: 1;
 
-        background: linear-gradient(#f2eded00, #000000);
-    }
-
-    /* Number text (1/3 etc) */
-    .numbertext {
-        color: #f2f2f2;
-        font-size: 12px;
-        padding: 8px 12px;
-        position: absolute;
-        top: 0;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-        cursor: pointer;
-        height: 3px;
-        width: 80px;
-        margin: 0 2px;
-        background-color: #b7b7b775;
-        border-radius: 0%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-    }
-
-    .active,
-    .dot:hover {
-        background-color: #717171;
-    }
-
-    /* Fading animation */
-    .fade {
-        animation-name: fade;
-        animation-duration: 1.5s;
-    }
-
-    @keyframes fade {
-        from {
-            opacity: .4
+        h3 {
+            margin: 1rem 0;
+            font-size: 25px;
         }
 
-        to {
-            opacity: 1
-        }
-    }
+        ul {
+            display: grid;
+            gap: 5px;
+            list-style: none;
 
+            li strong {
+                color: #7eff96;
+            }
+        }
+
+    }
 }
 
 /*sobre mim para dispositivos moveis*/
 @media all and (max-width: 880px) {
-    .sobre{
-        .mySlides{
-            background-color: #1c1c1c00;
+    .sobre {
+        display: flex;
+        flex-direction: column;
+        height: 1040px;
+
+        .stacked-carousel-container {
+            position: absolute;
+            transform: translate(0px, -150px);
             width: 100%;
-            height: auto;
-            display: flex;
-    
-            .secimg {
-                background-color: #00470d00;
+            height: 500px;
+        }
+
+        .text {
+            position: absolute;
+            transform: translate(0px, 340px);
+            width: 80%;
+
+
+            ul {
+                text-align: left;
+                font-size: 18px;
                 width: 100%;
-                height: 300px;
-                /* display: flex; */
-                /* justify-content: center; */
-                overflow: hidden;
-    
-                img{
-                    width: 350px;
-                    border-radius: 20px;
-                }
-    
             }
+        }
+
+        .background-gradient {
+            background-size: cover;
+            background-position: center;
+            height: 1040px;
+            width: 100%;
         }
     }
 }
@@ -697,45 +699,73 @@ main {
     height: auto;
     width: 100%;
     padding-bottom: 16rem;
-    background-color: #141414;
+    background-color: #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: solid 10px #1d1d1d;
     border-bottom: solid 13px #4d4d4d;
 
     /*-----titulo (competencias)-----*/
     h2 {
-        font-size: 30px;
         margin: 3rem 0;
     }
 
-    .ferramentas {
-        width: auto;
-
+    .carousel-container {
+        width: 80%;
+        /* background-color: #0c0c0c; */
+        overflow: hidden;
+        position: relative;
         display: flex;
-        justify-content: center;
-        gap: 4rem;
 
-        i {
-            font-size: 120px;
-            transition: .7s;
 
-            &:hover {
-                transform: scale(0.7);
+        .sombra {
+            width: 100px;
+            transform: translate(-10px) rotateZ(90deg);
+            position: relative;
+            z-index: 20;
+        }
+
+        .sombra2 {
+            width: 200px;
+            transform: translate(923px) rotateZ(-90deg);
+            position: absolute;
+        }
+
+        .carousel {
+            display: flex;
+            margin-left: 5rem;
+            transform: translate(0px);
+            animation: scroll-loop 105s linear infinite;
+
+            .carousel-item {
+                min-width: 100px;
+                margin: 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 80px;
+                    height: auto;
+                }
             }
         }
     }
+
+
 }
 
-.dark .competencias {
-    border-top: solid 10px #1d1d1d;
-    border-bottom: solid 13px #101010;
+/*carrossel infinito*/
+@keyframes scroll-loop {
+    0% {
+        transform: translateX(0px);
+    }
 
-    .ferramentas {
-        color: #cfcfcf;
+    100% {
+        transform: translateX(-9810.5px);
     }
 }
+
 
 /*competencias para dispositivos moveis*/
 @media all and (max-width: 880px) {
@@ -743,7 +773,7 @@ main {
         height: auto;
         width: 100%;
         padding-bottom: 14rem;
-        background-color: #141414;
+        background-color: #000000;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -776,7 +806,7 @@ main {
                 &:hover {
                     transform: scale(0.7);
                 }
-                
+
             }
 
         }
@@ -791,8 +821,9 @@ main {
     width: 80%;
     height: auto;
 
-    background-color: #377542;
-
+    background-image: url(https://gradient.page/_next/image?url=%2Fcdn%2Fgreen-glory%2Fgreen-glory-003.jpg&w=1920&q=75);
+    background-size: cover;
+    background-position: center;
     border-radius: 40px;
     background-position: 50;
     background-attachment: fixed;
@@ -818,6 +849,7 @@ main {
     section {
         display: flex;
         gap: 3rem;
+        backdrop-filter: blur(5px);
 
         div {
             background-color: white;
@@ -846,19 +878,11 @@ main {
     }
 }
 
-.dark .coisas_que_gosto {
-    div {
-        background-color: #4e4e4e;
-        color: white;
-    }
-}
-
 /*coisas q gosto para dispositvos moveis*/
 @media all and (max-width: 880px) {
     .coisas_que_gosto {
         width: 80%;
         height: auto;
-        background-color: #00470d;
         border-radius: 40px;
 
         box-shadow: 5px 5px 35px #00000030;
@@ -941,13 +965,14 @@ main {
     border-top: solid 10px #bcbcbc;
     border-bottom: solid 13px #d4d4d4;
     background-color: #cacaca;
+    background-image: url(/images/background_gradient.png);
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 14rem;
 
     h2 {
-        font-size: 30px;
         margin: 3rem 0;
     }
 
@@ -964,7 +989,6 @@ main {
 
             &:hover {
                 cursor: default;
-                transform: scale(1.1);
             }
         }
     }
@@ -972,8 +996,9 @@ main {
 
 .dark .softSkills {
     border-top: solid 10px #191919;
-    border-bottom: solid 13px #151515;
-    background-color: #171717;
+    border-bottom: solid 1px #151515;
+    background-image: none;
+    background-color: #000000;
 
     color: white;
 
@@ -1008,14 +1033,14 @@ main {
 #portifolio {
     border-top: solid 8px #f0f0f0;
     height: auto;
+    background-color: #fff;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 4rem;
+    padding-bottom: 3rem;
 
     h2 {
-        font-size: 30px;
         margin: 3rem 0;
     }
 
@@ -1376,6 +1401,7 @@ footer {
     footer {
         border: none;
 
+        font-size: 18px;
         background-color: #000;
         color: aliceblue;
 
@@ -1419,6 +1445,7 @@ footer {
             flex-direction: column;
             gap: 3rem;
             justify-content: center;
+            font-size: 18px;
 
             nav {
                 align-items: center;
@@ -1498,6 +1525,8 @@ footer {
         transform: rotate(360deg)
     }
 }
+
+
 
 /*header*/
 @keyframes headerAnimation {

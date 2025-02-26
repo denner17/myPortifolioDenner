@@ -12,10 +12,15 @@
     <style>
         @charset "UTF-8";
 
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
+        
+        html{
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: sans-serif;
             display: flex;
@@ -41,6 +46,7 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
+            height: 100px;
             padding: 0.1rem 0;
             position: -webkit-sticky;
             position: sticky;
@@ -48,6 +54,7 @@
             z-index: 10000;
             animation: headerAnimation linear;
             animation-timeline: scroll();
+            background-color: #fff;
 
             .logos {
                 .logoBgBlack {
@@ -130,13 +137,13 @@
 
                 font-size: 35px;
 
-                #moon {
+                .icon-darkmode {
                     transition: 0.5s;
+                    width: 40px;
                     position: absolute;
-                    z-index: 2;
+                    z-index: 20;
 
                     &:hover {
-                        color: #c7c7c7;
                         cursor: pointer;
                         transform: scale(1.1);
                     }
@@ -147,14 +154,13 @@
 
                 }
 
-                #sun {
+                .icon-lightmode {
                     transition: 0.5s;
                     opacity: 0;
+                    width: 45px;
 
                     &:hover {
-                        color: #ffffff;
-                        text-shadow: 1px 1px 20px #ffffffb3,
-                            -2px 2px 40px #ffffffb3;
+                        filter: drop-shadow(1px 1px 5px #ffffff);
                         cursor: pointer;
                         transform: scale(1.1);
                     }
@@ -168,8 +174,7 @@
 
         .dark header {
             color: #ffffff;
-            animation: darkHeaderAnimation linear;
-            animation-timeline: scroll();
+            background-color: #000;
 
 
             .logos {
@@ -210,11 +215,11 @@
             }
 
             .dark-btn {
-                #moon {
+                .icon-darkmode {
                     display: none;
                 }
 
-                #sun {
+                .icon-lightmode {
                     opacity: 1;
                 }
             }
@@ -262,7 +267,7 @@
                     display: none;
                     position: absolute;
                     z-index: 100;
-                    top: 70px;
+                    top: 100px;
                     left: 0;
                     background-color: #ffffff;
                     width: 100%;
@@ -273,6 +278,30 @@
                     display: contents;
                     font-size: 27px;
                     order: 1;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        p {
+                            background-color: #a6a6a65d;
+                            color: black;
+
+                        }
+                    }
+
+                    p {
+                        transition: .5s;
+                        font-weight: bold;
+                        font-size: 15px;
+                        background-color: black;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: white;
+                    }
                 }
 
                 .logos {
@@ -327,23 +356,49 @@
                     height: 100vh;
                 }
 
-                #menu-btn {
-                    color: #ffffff;
-                    display: contents;
-                    font-size: 27px;
-                    order: 1;
+                #menu-btn{
+                    p {
+                        border: solid 1px #ffffff;
+                    }
                 }
             }
         }
 
         /*------------/HEADER------------*/
 
+        /*------------/title------------*/
+        .title {
+            height: 200px;
+            width: 100%;
+            background-image: url(images-from-projects/wallpaper-projects-page.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            animation: backgroundMove linear;
+            animation-timeline: scroll();
+
+            h2 {
+                color: #fff;
+            }
+        }
+
+        @keyframes backgroundMove {
+            to{
+                background-position: bottom;
+            }
+            
+        }
+
         /*--------------BOARD--------------*/
         .board {
             display: grid;
             grid-template-columns: 300px 300px 300px;
             gap: 3rem;
-            margin-bottom: 3rem;
+            margin: 3rem 0;
 
             .card {
                 width: 300px;
@@ -387,6 +442,7 @@
 
                     img {
                         transition: 2s;
+                        width: 100%;
                     }
 
 
@@ -583,11 +639,47 @@
             }
         }
 
+        .Mrkt-board{
+            display: grid;
+            grid-template-columns: 300px 300px 300px;
+            gap: 3rem;
+            margin-bottom: 3rem;
+
+            img{
+                width: 300px;
+                border-radius: 20px;
+                box-shadow: 8px 8px 20px #00000052;
+            }
+        }
+
+        .dark .Mrkt-board{
+            img{
+                box-shadow: -5px 5px 40px #4b1eff86,
+                5px -5px 50px #5c21dabd;
+            }
+        }
+
+        @media all and (max-width: 880px) {
+            .Mrkt-board{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 2rem;
+
+                img{
+                    width: 300px;
+                    border-radius: 20px;
+                }
+            }
+            
+        }
+
         /*--------------/BOARD--------------*/
 
 
         /*header*/
-        @keyframes headerAnimation {
+        /* @keyframes headerAnimation {
             to {
                 background-color: #ffffffd9;
                 backdrop-filter: blur(10px);
@@ -599,7 +691,7 @@
                 background-color: #1c1c1cc2;
                 backdrop-filter: blur(10px);
             }
-        }
+        } */
 
         /*--------------FOOTER--------------*/
         footer {
@@ -820,20 +912,17 @@
     <header id="home">
         <!--logo-->
         <div class="logos">
-            <a href="/index.html"><img class="logoBgBlack" width="70px" src="/images/logoBgBlack.png" alt="">
+            <a href="https://denner17.github.io/myPortifolioDenner/"><img class="logoBgBlack" width="70px" src="/images/logoBgBlack.png" alt="">
                 <img class="logoBgWhite" width="70px" src="/images/logo.png" alt=""></a>
         </div>
 
         <!--menu nav-->
         <nav id="menu">
             <ul class="menu-list">
-                <li><a href="#home">Home
+                <li><a href="#webdev">Desenvolvimento_Web
                         <div class="line"></div>
                     </a></li>
-                <li><a href="#sobre">Sobre
-                        <div class="line"></div>
-                    </a></li>
-                <li><a href="#portifolio">Portifólio
+                <li><a href="#mrkt">Marketing&Design
                         <div class="line"></div>
                     </a></li>
                 <li><a href="#contato">Contato
@@ -863,8 +952,8 @@
         <div class="dark-btn">
             <input type="checkbox" name="change-theme" id="change-theme">
             <label for="change-theme">
-                <i id="moon" class="fa-regular fa-moon"></i>
-                <i id="sun" class="fa-regular fa-sun"></i>
+                <img class="icon-darkmode" src="images-from-projects/icons/darkmode-btn.png" alt="">
+                <img class="icon-lightmode" src="images-from-projects/icons/lightmode-btn.png" alt="">
             </label>
 
             <script>
@@ -887,7 +976,7 @@
         </div>
 
         <!--botao menu hamburger-->
-        <button onclick="showmenu()" id="menu-btn"><i class="fa-solid fa-bars fa-shake"></i></button>
+        <button onclick="showmenu()" id="menu-btn"><p>&#9776;</p></button>
 
     </header>
     <!--_-_-_-_-_HEADER/-_-_-_-_-_-_--->
@@ -895,12 +984,110 @@
 
 
     <!--_-_-_-_-_PROJETOS-_-_-_-_-_-_--->
+    <div class="title">
+        <h2 id="webdev">Meus Projetos</h2>
+    </div>
     <main>
-
-        <h2>Projetos</h2>
-
+        <h2>Desenvolvimento web</h2>
         <div class="board">
+            <!--LIMPOAMBIENTE-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/limpo-ambiente.gif" alt="">
 
+                    <h3>Limpo Ambiente</h3>
+                </div>
+                <div class="btns">
+                    <a href="https://limpo-ambiente.github.io/Limpo-Ambiente/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/Limpo-Ambiente/Limpo-Ambiente"><button class="btn2">ver repositório</button></a>
+                </div>
+            </div>
+
+            <!--CORPOATLETA-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/corpoatleta.png" alt="">
+
+                    <h3>Corpo Atleta</h3>
+
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/CorpoAtleta/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/CorpoAtleta"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+
+            <!--QUIZ-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/quiz.png" alt="">
+
+                    <h3>Quiz</h3>
+
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/Quiz/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/Quiz"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+
+            <!--CAFETERIA-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/cafeteria.png" alt="">
+
+                    <h3>Meu 1º projeto</h3>
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/Cafeteria-IOS/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/Cafeteria-IOS"><button class="btn2">ver repositório</button></a>
+                </div>
+            </div>
+
+            <!--IMC-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/imc.png" alt="">
+
+                    <h3>Calculadora IMC</h3>
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/IMC/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/IMC"><button class="btn2">ver repositório</button></a>
+                </div>
+            </div>
+
+            <!--DESIGNSS-->
+            <div class="card">
+                <div class="preview">
+                    <img src="/images/previews-projects/designSs.gif" alt="">
+
+                    <h3>DesignSs</h3>
+
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/DssMrktDesign/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/DssMrktDesign"><button class="btn2">ver
+                            repositório</button></a>
+                </div>
+            </div>
+
+            <!--TABUADA-->
+            <div class="card">
+                <div class="preview">
+                    <img src="images-from-projects/previews-projects/tabuada.png" alt="">
+
+                    <h3>Tabuada Kids</h3>
+                </div>
+                <div class="btns">
+                    <a href="https://denner17.github.io/Tabuada/"><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/Tabuada"><button class="btn2">ver repositório</button></a>
+                </div>
+            </div>
+
+            <!--MAGENTO-->
             <div class="card">
                 <div class="preview">
                     <img src="/images/previews-projects/Magento.gif" alt="">
@@ -915,35 +1102,27 @@
                 </div>
             </div>
 
-
-
+            <!--CREED-->
             <div class="card">
                 <div class="preview">
-                    <img src="images/previews-projects/designSs.gif" alt="">
+                    <img src="images-from-projects/previews-projects/creed.png" alt="">
 
-                    <h3>DesignSs</h3>
+                    <h3>Calculadora Creed</h3>
 
                 </div>
                 <div class="btns">
-                    <a href="https://denner17.github.io/DssMrktDesign/"><button class="btn1">ver site</button></a>
-                    <a href="https://github.com/denner17/DssMrktDesign"><button class="btn2">ver
+                    <a href="https://denner17.github.io/calculadora/
+                    "><button class="btn1">ver site</button></a>
+                    <a href="https://github.com/denner17/calculadora"><button id="mrkt" class="btn2">ver
                             repositório</button></a>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="preview">
-                    <img src="/images/previews-projects/designSs.gif" alt="">
-
-                    <h3>DesignSs</h3>
-
-                </div>
-                <div class="btns">
-                    <a href="https://denner17.github.io/DssMrktDesign/"><button class="btn1">ver site</button></a>
-                    <a href="https://github.com/denner17/DssMrktDesign"><button class="btn2">ver
-                            repositório</button></a>
-                </div>
-            </div>
+        </div>
+        <h2>Marketing & Design</h2>
+        <div class="Mrkt-board">
+                <img src="images-from-projects/previews-projects/sinta-seEmCasa.png" alt="">
+                <img src="images-from-projects/previews-projects/TeamSogipa.png" alt="">
+                <img src="images-from-projects/previews-projects/cesardutra.png" alt="">
         </div>
     </main>
     <!--_-_-_-_-_PROJETOS/-_-_-_-_-_-_--->
@@ -974,10 +1153,9 @@
             <div class="redesSociais">
                 <h2>Siga-me nas redes sociais</h2>
                 <div class="icons2">
-                    <a href="https:www.instagram.com/denner_04/"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https:www.linkedin.com/in/denner-dos-santos-258b37222/"><i
-                            class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https:github.com/denner17"><i class="fa-brands fa-github"></i></a>
+                    <a href="https:www.instagram.com/denner_04/"><img width="50px" src="https://img.icons8.com/m_outlined/200/FFFFFF/instagram-new.png" alt=""></a>
+                    <a href="https:www.linkedin.com/in/denner-dos-santos-258b37222/"><img width="50px" src="https://img.icons8.com/ios_filled/200/FFFFFF/linkedin.png" alt=""></a>
+                    <a href="https:github.com/denner17"><img width="50px" src="https://img.icons8.com/ios11/512/FFFFFF/github.png" alt=""></a>
                 </div>
             </div>
         </div>
