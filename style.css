@@ -426,8 +426,8 @@ main {
             background-color: #00470d;
 
             img {
-                width: 400px;
-                transform: translate(-13%, -30%);
+                width: 300px;
+                transform: translate(0,0);
 
             }
         }
@@ -543,8 +543,8 @@ main {
                 background-color: #00470d;
 
                 img {
-                    width: 400px;
-                    transform: translate(-13%, -30%);
+                    width: 300px;
+                    transform: translate(-7%, -8%);
                 }
             }
         }
